@@ -18,7 +18,7 @@ gradesP.then(function(data){
 var drawChart = function(data){
 
   var xScale = d3.scaleLinear()
-                  .domain([0,11])
+                  .domain([0,d3.])
                   .range([padding,width-padding]);
 
   var yScale = d3.scaleLinear()
@@ -35,11 +35,13 @@ var drawChart = function(data){
 
   svg.append("g")
       .attr("class","axis")
-      .call(xAxis)
+      .attr("transform","translate(0,"+(height-padding)+")")
+      .call(xAxis);
 
   svg.append("g")
       .attr("class","axis")
-      .call (yAxis)
+      .attr("transform","translate(0,"+(padding)+")")
+      .call (yAxis);
 
 
   var circles = svg.selectAll("circle")
@@ -50,7 +52,7 @@ var drawChart = function(data){
                       return xScale(i);
                     })
                     .attr("cy",function(d){
-                      return yScale(i);
+                      return yScale(d.length);
                     })
-                    .attr("r",10)
+                    .attr("r",5)
 };
