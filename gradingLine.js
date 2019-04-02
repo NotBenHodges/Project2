@@ -19,11 +19,28 @@ var drawChart = function(data){
 
   var xScale = d3.scaleLinear()
                   .domain([0,11])
-                  .range([padding,width-padding])
+                  .range([padding,width-padding]);
 
   var yScale = d3.scaleLinear()
                   .domain([0,10])
-                  .range([height-padding,padding])
+                  .range([height-padding,padding]);
+
+  var xAxis = d3.axisBottom()
+                .scale(xScale)
+                .ticks(10);
+
+  var yAxis = d3.axisLeft()
+                .scale(yScale)
+                .ticks(10);
+
+  svg.append("g")
+      .attr("class","axis")
+      .call(xAxis)
+
+  svg.append("g")
+      .attr("class","axis")
+      .call (yAxis)
+
 
   var circles = svg.selectAll("circle")
                     .data(data)
