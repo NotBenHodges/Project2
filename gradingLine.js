@@ -2,7 +2,6 @@ var gradesP = d3.json("penguins/classData.json")
 
 var height = 600
 var width = 800
-
 var padding = 30
 
 var svg = d3.select("body")
@@ -11,14 +10,14 @@ var svg = d3.select("body")
             .attr("height",height)
 
 gradesP.then(function(data){
-  drawChart(data);
+  drawChart(data,0);
 });
 
 
-var drawChart = function(data){
+var drawChart = function(data,day){
 
   var xScale = d3.scaleLinear()
-                  .domain([0,d3.])
+                  .domain([0,11])
                   .range([padding,width-padding]);
 
   var yScale = d3.scaleLinear()
@@ -40,7 +39,7 @@ var drawChart = function(data){
 
   svg.append("g")
       .attr("class","axis")
-      .attr("transform","translate(0,"+(padding)+")")
+      .attr("transform","translate("+(padding)+",0)")
       .call (yAxis);
 
 
@@ -49,10 +48,10 @@ var drawChart = function(data){
                     .enter()
                     .append("circle")
                     .attr("cx",function(d,i){
-                      return xScale(i);
+                      return ;
                     })
-                    .attr("cy",function(d){
-                      return yScale(d.length);
+                    .attr("cy",function(d,i){
+                      return ;
                     })
                     .attr("r",5)
 };
